@@ -65,7 +65,7 @@ public class SIMMAC {
 	/**
 	 * Function that loads value
 	 * 
-	 * @return boolean, whether value was read
+	 * @return boolean, whether value was loaded
 	 */
 	public boolean load(){
 		temporaryRegister = accumulator;
@@ -84,6 +84,111 @@ public class SIMMAC {
 			return false;
 		}
 		
+	}
+	/**
+	 * Function that stores value
+	 * 
+	 * @return boolean, whether value was stored
+	 */
+	public boolean store(){
+		temporaryRegister = accumulator;
+		accumulator = psiar + 1;
+		psiar = accumulator;
+		accumulator = temporaryRegister;
+		temporaryRegister = storageDataRegister;
+		storageAddressRegister = temporaryRegister;
+		storageDataRegister = accumulator;
+		
+		if (writeToMemory()){
+			return true;
+		}
+		else{
+			csiar = 0;
+			return false;
+		}
+	}
+	
+	/**
+	 * Function that fetches instruction
+	 * 
+	 * @return boolean, whether or not instruction could be fetched
+	 */
+	public boolean instructionFetch() {
+		storageAddressRegister = psiar;
+		if (readFromMemory()){
+			return true;
+		}
+		else{
+			instructionRegister = storageDataRegister;
+			storageDataRegister = instructionRegister & 0xFFFF;
+			csiar = instructionRegister >> 16;
+			return false;
+		}
+	}
+	
+	public boolean add(){
+		temporaryRegister = accumulator;
+		accumulator = psiar + 1;
+		psiar = accumulator;
+		accumulator = temporaryRegister;
+		temporaryRegister = storageDataRegister;
+		storageAddressRegister = temporaryRegister;
+		
+		if (readFromMemory()){
+			return true;
+		}
+		
+		else{
+			temporaryRegister = storageDataRegister;
+			accumulator = accumulator + temporaryRegister;
+			csiar = 0;
+			return false;
+		}
+	}
+	
+	public boolean subtract(){
+		temporaryRegister = accumulator;
+		accumulator = psiar + 1;
+		psiar = accumulator;
+		accumulator = temporaryRegister;
+		temporaryRegister = storageDataRegister;
+		storageAddressRegister = temporaryRegister;
+		
+		if (readFromMemory()){
+			return true;
+		}
+		else{
+			temporaryRegister = storageDataRegister;
+			accumulator = accumulator - temporaryRegister;
+			csiar = 0;
+			return false;
+		}
+	}
+	
+	public void loadImmediate(){
+		accumulator = psiar + 1;
+		psiar = accumulator; 
+		accumulator = storageDataRegister;
+		csiar = 0;
+	}
+	
+	public void branch(){
+		psiar = storageDataRegister;
+		csiar = 0;
+	}
+
+	public void conditionalBranch(){
+		if (accumulator == 0){
+			psiar = storageDataRegister;
+			csiar = 0;
+		}
+		else{
+			temporaryRegister = accumulator;
+			accumulator = psiar + 1;
+			psiar = accumulator;
+			accumulator = temporaryRegister;
+			csiar = 0;
+		}
 	}
 
 }
