@@ -11,7 +11,7 @@ public class Instruction {
 	public final static int conditionalBranch =  0x0007;
 	public final static int halt =  0x0008;
 	
-	public int getOpCode(String opCode){
+	public static int getOpCode(String opCode){
 		opCode = opCode.toLowerCase();
 		
 		switch(opCode){
@@ -36,7 +36,7 @@ public class Instruction {
 		}
 	}
 	
-	public Integer parseOperand(int opCode, int line, String fileName, String operand){
+	public static Integer parseOperand(int opCode, int line, String fileName, String operand){
 		switch(opCode){
 			case load:
 			case store:
@@ -81,7 +81,7 @@ public class Instruction {
 		}
 	}
 	
-	public Integer parseInstruction(int lineNumber, String fileName, String line){
+	public static Integer parseInstruction(int lineNumber, String fileName, String line){
 		String [] lineArray = line.split("\\s+");
 		if (lineArray.length > 2 || lineArray.length < 2 || lineArray[0].length() == 0){
 			System.out.println("Error in " + fileName + " line: " + lineNumber + ", instructions must"
