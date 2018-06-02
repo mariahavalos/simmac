@@ -80,5 +80,40 @@ public class Instruction {
 				return null;
 		}
 	}
+	
+	public Integer parseInstruction(int lineNumber, String fileName, String line){
+		String [] lineArray = line.split("\\s+");
+		if (lineArray.length > 2 || lineArray.length < 2 || lineArray[0].length() == 0){
+			System.out.println("Error in " + fileName + " line: " + lineNumber + ", instructions must"
+				+ " contain one opcode and operand"); 
+			return null;
+		}
+
+		else{
+			int opCodeValue = getOpCode(lineArray[0]);
+			if (opCodeValue == -1){
+				System.out.println("Error in " + fileName + " line: " + lineNumber + 
+						", invalid opcode " + lineArray[0]); 
+				return null;
+			}
+			if (opCodeValue == halt){
+				if (lineArray.length > 1){
+					System.out.println("Error in " + fileName + " line: " + lineNumber + 
+							", halt requires no operands"); 
+					return null;
+				}
+				return (opCodeValue << 16); 
+			}
+			else{
+				Integer op = parseOperand(opCodeValue, lineNumber, fileName, lineArray[1]);
+				if (op == null){
+					return null;
+				}
+				else{
+					return (opCodeValue << 16 | op);
+				}
+			}
+		}
+	}
 }
 
