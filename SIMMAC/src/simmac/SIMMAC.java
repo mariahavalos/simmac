@@ -126,6 +126,11 @@ public class SIMMAC {
 		}
 	}
 	
+	/**
+	 * Function that adds values
+	 * 
+	 * @return boolean, whether or not can't add value
+	 */
 	public boolean add(){
 		temporaryRegister = accumulator;
 		accumulator = psiar + 1;
@@ -146,6 +151,11 @@ public class SIMMAC {
 		}
 	}
 	
+	/**
+	 * Function that subtract values
+	 * 
+	 * @return boolean, whether or not can't subtract
+	 */
 	public boolean subtract(){
 		temporaryRegister = accumulator;
 		accumulator = psiar + 1;
@@ -165,6 +175,9 @@ public class SIMMAC {
 		}
 	}
 	
+	/**
+	 * function that loads immediate value
+	 */
 	public void loadImmediate(){
 		accumulator = psiar + 1;
 		psiar = accumulator; 
@@ -172,11 +185,17 @@ public class SIMMAC {
 		csiar = 0;
 	}
 	
+	/**
+	 * Function that branches
+	 */
 	public void branch(){
 		psiar = storageDataRegister;
 		csiar = 0;
 	}
 
+	/**
+	 * Function that branches conditionally
+	 */
 	public void conditionalBranch(){
 		if (accumulator == 0){
 			psiar = storageDataRegister;
@@ -190,5 +209,66 @@ public class SIMMAC {
 			csiar = 0;
 		}
 	}
-
+	
+	/**
+	 * Function that prints out contents("dumps")
+	 */
+	public void dumpContents(){
+		System.out.println("Registers:");
+		System.out.printf("ACC = %08X\tPSIAR = %04X\tSAR = %04X\tSDR = %08X\n",
+				accumulator,psiar,storageAddressRegister,storageDataRegister);
+		System.out.printf("TMPR = %08X\tCSIAR = %04X\tIR = %04X\tMIR = %04X\n",
+				temporaryRegister,csiar,instructionRegister, microInstructionRegister);
+		
+		System.out.println("Memory:");
+		for (int i = 0; i < memorySize; i++){
+			if (i > 0 && i%8 == 0){
+				System.out.println(i);
+				System.out.printf("%08X",memory[i]);
+			}
+		}
+	}
+	
+	public boolean executeInstruction(){
+		boolean halt = false, error = false;
+		instructionFetch();
+		
+		/*switch(csiar){
+			case Instruction.add:
+				error = add();
+				break;
+			case Instruction.subtract:
+				error = subtract();
+				break;
+			case Instruction.load:
+				error = load();
+				break;
+			case Instruction.store:
+				error = store();
+				break;
+			case Instruction.branch:
+				error = false;
+				break;
+			case Instruction.conditionalBranch:
+				error = false;
+				break;
+			case Instruction.loadImmediate:
+				error = false;
+				break;
+			case Instruction.halt:
+				dumpContents();
+				System.out.println("End of Job");
+				halt = true;
+				break;
+			default:
+				dumpContents();
+				System.out.printf("Invalid instruction. Terminating process.", instructionRegister);
+				halt = true;
+		} 
+		if (error){
+			dumpContents();
+			System.out.printf("Invalid instruction. Terminating process.", storageAddressRegister);
+		}*/
+		return (halt || error);
+	}
 }
