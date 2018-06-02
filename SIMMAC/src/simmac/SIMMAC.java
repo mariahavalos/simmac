@@ -229,11 +229,16 @@ public class SIMMAC {
 		}
 	}
 	
+	/**
+	 * Function that executes instruction
+	 * 
+	 * @return boolean, halt or error depending on outcome
+	 */
 	public boolean executeInstruction(){
 		boolean halt = false, error = false;
 		instructionFetch();
 		
-		/*switch(csiar){
+		switch(csiar){
 			case Instruction.add:
 				error = add();
 				break;
@@ -268,7 +273,7 @@ public class SIMMAC {
 		if (error){
 			dumpContents();
 			System.out.printf("Invalid instruction. Terminating process.", storageAddressRegister);
-		}*/
+		}
 		return (halt || error);
 	}
 }
