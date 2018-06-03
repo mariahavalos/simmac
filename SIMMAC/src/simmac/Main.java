@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class Main {
 
 	/**
-	 * Function parses file with Simmac instructions
+	 * Function parses file with SIMMAC instructions and specifications.
+	 * 
 	 * @throws FileNotFoundException 
 	 */
 	public static int[] readFile(String fileName) throws FileNotFoundException {
@@ -45,6 +46,13 @@ public class Main {
 		return null;
 	}
 	
+	/**
+	 * Main running function for the program. Takes in quantum value (number of cycles per instruction)
+	 * and an array of file names. Runs best on command line.
+	 * 
+	 * @param args
+	 * @throws FileNotFoundException
+	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		System.out.println("Please enter a quantum value.");
 		Scanner scanner = new Scanner(System.in);

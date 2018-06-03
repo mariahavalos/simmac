@@ -8,6 +8,13 @@ public class OperatingSystem {
 	SIMMAC cpu;
 	int quantumValue, loadAddress, clock;
 	
+	/**
+	 * Constructor for OS object. Contains current process and array list of processes
+	 * that are ready for fetching/processing (ha). Also sets the default value of clock.
+	 * 
+	 * @param quantumValue
+	 * @param cpu
+	 */
 	public OperatingSystem (int quantumValue, SIMMAC cpu){
 		this.cpu = cpu;
 		this.quantumValue = quantumValue;
@@ -17,6 +24,12 @@ public class OperatingSystem {
 		readyProcesses = new ArrayList<Process>();
 	}
 	
+	/**
+	 * Function that runs the os objects, containing the list of ready processes.
+	 * Cycles through until there are no more processes ready to be executed or an
+	 * error is thrown, as specified in other classes.
+	 * 
+	 */
 	public void run(){
 		currentProcesses = null;
 		boolean quit = false;
@@ -38,6 +51,13 @@ public class OperatingSystem {
 		}
 	}
 	
+	/**
+	 * Function that switches the current process based on the quantum value. Processes are tracked
+	 * based off the run() function, and if null, the cpu's variables are set to the current processes' 
+	 * variables. This helps to track the op code, operands, and other variables. A lot of the work is
+	 * done here.
+	 * 
+	 */
 	public void switchProcesses(){
 		if (currentProcesses != null){
 			currentProcesses.accumulator = cpu.accumulator;
@@ -57,6 +77,10 @@ public class OperatingSystem {
 		print(); 
 	}
 	
+	/**
+	 * Function that loads the processes into a queue for switching and running later on.
+	 * @param processes
+	 */
 	public void loadProcess(int []processes){
 		int startingAddress = loadAddress;
 		if (loadAddress + processes.length >= cpu.memorySize){
@@ -71,6 +95,9 @@ public class OperatingSystem {
 		}
 	}
 	
+	/*
+	 * Function that prints the process queue.
+	 */
 	public void print(){
 		System.out.println("Proccess queue: ");
 		for (int i = 0; i < readyProcesses.size(); i++){

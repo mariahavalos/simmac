@@ -12,6 +12,12 @@ public class Instruction {
 	public final static int conditionalBranch =  0x0007;
 	public final static int halt =  0x0008;
 	
+	/** 
+	 * Function that gets the op code based on value and returns the hex value.
+	 * 
+	 * @param opCode
+	 * @return int, -1 if opcode is not valid
+	 */
 	public static int getOpCode(String opCode){
 		opCode = opCode.toLowerCase();
 		
@@ -39,6 +45,15 @@ public class Instruction {
 		}
 	}
 	
+	/**
+	 * Function that parses the operand, if applicable.
+	 * 
+	 * @param opCode
+	 * @param line
+	 * @param fileName
+	 * @param operand
+	 * @return operandValue, if applicable
+	 */
 	public static Integer parseOperand(int opCode, int line, String fileName, String operand){
 		switch(opCode){
 			case base:
@@ -46,10 +61,8 @@ public class Instruction {
 					int value = Integer.parseInt(operand);
 					return value;
 				}
-			case load:
 			case store:
-			case add:
-			case subtract:
+			case load:
 			case loadImmediate:
 				if (operand.matches("[+-]?\\d+")){
 					int value = Integer.parseInt(operand);
@@ -66,6 +79,8 @@ public class Instruction {
 					System.out.println("Error in " + fileName + " , line: " + line +
 							" is an invalid number: " + operand );
 				}
+			case add:
+			case subtract:
 			case branch:
 			case conditionalBranch:
 				if (operand.matches("\\d+")){
@@ -89,6 +104,14 @@ public class Instruction {
 		}
 	}
 	
+	/**
+	 * Function that parses the instruction per line of the input file.
+	 * 
+	 * @param lineNumber
+	 * @param fileName
+	 * @param line
+	 * @return conjoined op code and operand values
+	 */
 	public static Integer parseInstruction(int lineNumber, String fileName, String line){
 		String [] lineArray = line.split("\\s+");
 		if (lineArray.length > 2  || lineArray[0].length() == 0){

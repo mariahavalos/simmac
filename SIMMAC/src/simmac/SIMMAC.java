@@ -3,14 +3,12 @@ package simmac;
 public class SIMMAC {
 	
 	// memory and addresses
-	
 	public int memorySize = 512;
 	public int memory[];
 	public int startingAddress;
 	public int endingAddress;
 	
 	// registers
-	
 	public int accumulator;
 	public int psiar;
 	public int storageAddressRegister;
@@ -21,7 +19,7 @@ public class SIMMAC {
 	public int microInstructionRegister;
 
 	/**
-	 * Function that sets default values to csiar, psiar, accumulator, and memory
+	 * Constructor that sets default values to csiar, psiar, accumulator, and memory.
 	 */
 	public SIMMAC(){
 		memory = new int [memorySize];
@@ -33,16 +31,23 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * Function that reads from memory using storage address register.
+	 * Function that reads from memory using storage address register. Data from storage location
+	 * of SAR is assigned to SDR.
 	 * 
-	 * @return boolean, false if unable to read
+	 * @return boolean, specifies if there was an error.
 	 */
 	public boolean readFromMemory(){
 		boolean readable = ((storageAddressRegister + startingAddress) <= endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
-		//System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
-		//System.out.println("Memory is [" + memory[(storageAddressRegister + startingAddress)] + "]");
-		//System.out.println("Memory limit is: " + endingAddress);
+		
+		/*//Uncomment the below to see the memory addresses and contents within those addresses. Helps for 
+		 * troubleshooting.
+
+		System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
+		System.out.println("Memory is [" + memory[(storageAddressRegister + startingAddress)] + "]");
+		System.out.println("Memory limit is: " + endingAddress);
+		 */
+		
 		if (readable){
 			storageDataRegister = memory[(storageAddressRegister + startingAddress)];
 		}
@@ -50,13 +55,23 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * Function that writes to memory using storage address register.
+	 * Function that writes to memory using storage address register. Data in SDR is assigned to 
+	 * storage location specified by the SAR. 
 	 * 
-	 * @return boolean, false if unable to write
+	 * @return boolean, specifies if there was an error. 
 	 */
 	public boolean writeToMemory(){
 		boolean writable = ((storageAddressRegister + startingAddress) <= endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
+		
+		/*//Uncomment the below to see the memory addresses and contents within those addresses. Helps for 
+		 * troubleshooting.
+
+		System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
+		System.out.println("Memory is [" + memory[(storageAddressRegister + startingAddress)] + "]");
+		System.out.println("Memory limit is: " + endingAddress);
+		 */
+		
 		if (writable){
 			memory[storageAddressRegister + startingAddress] = storageDataRegister;
 		}
@@ -65,7 +80,7 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * Function that loads value
+	 * Function that loads value, specified by assignment.
 	 * 
 	 * @return boolean, whether value was loaded
 	 */
@@ -88,7 +103,7 @@ public class SIMMAC {
 		
 	}
 	/**
-	 * Function that stores value
+	 * Function that stores value, specified by assignment.
 	 * 
 	 * @return boolean, whether value was stored
 	 */
@@ -111,7 +126,7 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * Function that fetches instruction
+	 * Function that fetches instruction, specified by assignment.
 	 * 
 	 * @return boolean, whether or not instruction could be fetched
 	 */
@@ -129,7 +144,7 @@ public class SIMMAC {
 	/**
 	 * Function that adds values
 	 * 
-	 * @return boolean, whether or not can't add value
+	 * @return boolean, whether or not can't add value, specified by assignment.
 	 */
 	public boolean add(){
 		temporaryRegister = accumulator;
@@ -152,7 +167,7 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * Function that subtract values
+	 * Function that subtract values, specified by assignment.
 	 * 
 	 * @return boolean, whether or not can't subtract
 	 */
@@ -176,7 +191,7 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * function that loads immediate value
+	 * function that loads immediate value, specified by assignment.
 	 */
 	public void loadImmediate(){
 		accumulator = psiar + 1;
@@ -186,7 +201,7 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * Function that branches
+	 * Function that branches, specified by assignment.
 	 */
 	public void branch(){
 		psiar = storageDataRegister;
@@ -194,7 +209,7 @@ public class SIMMAC {
 	}
 
 	/**
-	 * Function that branches conditionally
+	 * Function that branches conditionally, specified by assignment.
 	 */
 	public void conditionalBranch(){
 		if (accumulator == 0){
@@ -211,7 +226,8 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * Function that prints out contents("dumps")
+	 * Function that prints out contents and memory addresses, used for dumping during error
+	 * or during halt.
 	 */
 	public void dumpContents(){
 		System.out.println("Registers:");
@@ -230,7 +246,10 @@ public class SIMMAC {
 	}
 	
 	/**
-	 * Function that executes instruction
+	 * Function that executes instruction. 
+	 * Calls instruction fetch to grab the current op code and switches based on op code of
+	 * the current process.
+	 * Contains halt command. 
 	 * 
 	 * @return boolean, halt or error depending on outcome
 	 */
@@ -266,7 +285,7 @@ public class SIMMAC {
 				break;
 			case Instruction.halt:
 				dumpContents();
-				System.out.println("End of Job");
+				System.out.println("\n" + "End of Job");
 				halt = true;
 				break;
 			default:
