@@ -236,9 +236,13 @@ public class SIMMAC {
 	 */
 	public boolean executeInstruction(){
 		boolean halt = false, error = false;
-		instructionFetch();
 		
+		instructionFetch();
 		switch(csiar){
+			case Instruction.base:
+				error = false;
+				halt = true;
+				break;
 			case Instruction.add:
 				error = add();
 				break;
@@ -272,7 +276,7 @@ public class SIMMAC {
 		} 
 		if (error){
 			dumpContents();
-			System.out.printf("Invalid instruction. Terminating process.", storageAddressRegister);
+			System.out.printf("Invalid memory address. Terminating process.", storageAddressRegister);
 		}
 		return (halt || error);
 	}

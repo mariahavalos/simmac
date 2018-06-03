@@ -34,7 +34,7 @@ public class OperatingSystem {
 					quit = true;
 				}
 			}
-			if (clock >= value && !quit){
+			if (clock >= this.value && !quit){
 				switchProcesses();
 			}
 		}
@@ -54,7 +54,7 @@ public class OperatingSystem {
 		cpu.startingAddress = currentProcesses.startingAddress;
 		
 		clock = 0;
-		System.out.println("Switching processes");
+		System.out.println("Switching processes.");
 		System.out.println("Next proccess: " + currentProcesses.id);
 		print(); 
 	}
@@ -64,7 +64,6 @@ public class OperatingSystem {
 		if (loadAddress + processes.length >= cpu.memorySize){
 			System.exit(0);
 		}
-		
 		for (int i = 0; i < processes.length; i++){
 			cpu.memory[loadAddress + i] = processes[i];
 			loadAddress += processes.length;

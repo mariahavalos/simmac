@@ -1,5 +1,2 @@
-STR 1
-LDA 1
-ADD 1
-SUB 1
-
+STR 13
+ADD 16

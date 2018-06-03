@@ -2,6 +2,7 @@ package simmac;
 
 public class Instruction {
 
+	public final static int base = 0x0000;
 	public final static int add =  0x0001;
 	public final static int subtract =  0x0002;
 	public final static int load =  0x0003;
@@ -15,6 +16,8 @@ public class Instruction {
 		opCode = opCode.toLowerCase();
 		
 		switch(opCode){
+			case "base":
+				return base;
 			case "lda":
 				return load;
 			case "str":
@@ -38,6 +41,11 @@ public class Instruction {
 	
 	public static Integer parseOperand(int opCode, int line, String fileName, String operand){
 		switch(opCode){
+			case base:
+				if (operand.matches("[+-]?\\d+")){
+					int value = Integer.parseInt(operand);
+					return value;
+				}
 			case load:
 			case store:
 			case add:
@@ -83,35 +91,32 @@ public class Instruction {
 	
 	public static Integer parseInstruction(int lineNumber, String fileName, String line){
 		String [] lineArray = line.split("\\s+");
-		if (lineArray.length > 2 || lineArray.length < 2 || lineArray[0].length() == 0){
+		if (lineArray.length > 2  || lineArray[0].length() == 0){
 			System.out.println("Error in " + fileName + " line: " + lineNumber + ", instructions must"
 				+ " contain one opcode and operand"); 
 			return null;
 		}
-
-		else{
-			int opCodeValue = getOpCode(lineArray[0]);
-			if (opCodeValue == -1){
+		int opCodeValue = getOpCode(lineArray[0]);
+		if (opCodeValue == -1){
+			System.out.println("Error in " + fileName + " line: " + lineNumber + 
+					", invalid opcode " + lineArray[0]); 
+			return null;
+		}
+		if (opCodeValue == halt){
+			if (lineArray.length > 1){
 				System.out.println("Error in " + fileName + " line: " + lineNumber + 
-						", invalid opcode " + lineArray[0]); 
+						", halt requires no operands"); 
 				return null;
 			}
-			if (opCodeValue == halt){
-				if (lineArray.length > 1){
-					System.out.println("Error in " + fileName + " line: " + lineNumber + 
-							", halt requires no operands"); 
-					return null;
-				}
-				return (opCodeValue << 16); 
+			return (opCodeValue << 16); 
+		}
+		else{
+			Integer op = parseOperand(opCodeValue, lineNumber, fileName, lineArray[1]);
+			if (op == null){
+				return null;
 			}
 			else{
-				Integer op = parseOperand(opCodeValue, lineNumber, fileName, lineArray[1]);
-				if (op == null){
-					return null;
-				}
-				else{
-					return (opCodeValue << 16 | op);
-				}
+				return (opCodeValue << 16 | op);
 			}
 		}
 	}
