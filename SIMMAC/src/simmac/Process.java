@@ -8,11 +8,11 @@ public class Process {
 	public int startingAddress;
 	public int endingAddress;
 	
-	public Process(int startingAddress, int psiar, int size, int id){
+	public Process(int startingAddress, int size, int id){
 		this.id = id;
 		this.startingAddress = startingAddress;
 		accumulator = 0;
-		this.psiar = psiar;
+		psiar = 0;
 		endingAddress = startingAddress + size;
 		
 	}

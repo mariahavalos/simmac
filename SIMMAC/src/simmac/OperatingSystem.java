@@ -63,8 +63,9 @@ public class OperatingSystem {
 		}
 		for (int i = 0; i < processes.length; i++){
 			cpu.memory[loadAddress + i] = processes[i];
+			System.out.println("MEMORY at memory[" + (loadAddress + i) + "]");
 			loadAddress += processes.length;
-			Process process = new Process(startingAddress, processes[i], processes.length, readyProcesses.size());
+			Process process = new Process(startingAddress, processes.length, readyProcesses.size());
 			readyProcesses.add(process);
 		}
 	}
