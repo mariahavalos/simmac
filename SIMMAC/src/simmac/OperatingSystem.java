@@ -25,16 +25,14 @@ public class OperatingSystem {
 		while (!quit){
 			boolean status = cpu.executeInstruction();
 			clock += 1;
-			if (status == true){
-				if (readyProcesses.size() > 0){
-					currentProcesses = null;
-					switchProcesses();
-				}
-				else{
-					quit = true;
-				}
+			if (status == true && readyProcesses.size() > 0){
+				currentProcesses = null;
+				switchProcesses();
 			}
-			if (clock >= this.quantumValue && !quit){
+			if (status == true && readyProcesses.size() == 0){
+				quit = true;
+			}
+			if (clock >= this.quantumValue && !quit && readyProcesses.size() > 0){
 				switchProcesses();
 			}
 		}
@@ -44,15 +42,11 @@ public class OperatingSystem {
 		if (currentProcesses != null){
 			currentProcesses.accumulator = cpu.accumulator;
 			currentProcesses.psiar = cpu.psiar;
-			readyProcesses.add(currentProcesses);
 		}
 		
-		//FOUNDITTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 		currentProcesses = readyProcesses.remove(0);
 		cpu.accumulator = currentProcesses.accumulator;
 		cpu.psiar = currentProcesses.psiar;
-		//this works but messes up everything else
-		System.out.println("PSIAR: " + cpu.psiar);
 		cpu.endingAddress = currentProcesses.endingAddress;
 		cpu.startingAddress = currentProcesses.startingAddress;
 		

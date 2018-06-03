@@ -1,4 +1,3 @@
 STR 23
 ADD 23
-ADD 42
-SUB 44
+halt
