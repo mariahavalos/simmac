@@ -46,7 +46,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		System.out.println("Please provide your file name");
+		System.out.println("Please enter a quantum value.");
 		Scanner scanner = new Scanner(System.in);
 		int value = scanner.nextInt();
 		SIMMAC cpu = new SIMMAC();

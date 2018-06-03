@@ -1,0 +1,3 @@
+STR 13
+LDI 123
+HALT

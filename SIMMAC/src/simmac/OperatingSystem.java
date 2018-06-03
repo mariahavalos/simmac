@@ -6,11 +6,11 @@ public class OperatingSystem {
 	ArrayList<Process> readyProcesses;
 	Process currentProcesses;
 	SIMMAC cpu;
-	int value, loadAddress, clock;
+	int quantumValue, loadAddress, clock;
 	
-	public OperatingSystem (int value, SIMMAC cpu){
+	public OperatingSystem (int quantumValue, SIMMAC cpu){
 		this.cpu = cpu;
-		this.value = value;
+		this.quantumValue = quantumValue;
 		clock = 0;
 		loadAddress = 0;
 		currentProcesses = null;
@@ -34,7 +34,7 @@ public class OperatingSystem {
 					quit = true;
 				}
 			}
-			if (clock >= this.value && !quit){
+			if (clock >= this.quantumValue && !quit){
 				switchProcesses();
 			}
 		}
@@ -47,9 +47,12 @@ public class OperatingSystem {
 			readyProcesses.add(currentProcesses);
 		}
 		
+		//FOUNDITTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 		currentProcesses = readyProcesses.remove(0);
 		cpu.accumulator = currentProcesses.accumulator;
 		cpu.psiar = currentProcesses.psiar;
+		//this works but messes up everything else
+		System.out.println("PSIAR: " + cpu.psiar);
 		cpu.endingAddress = currentProcesses.endingAddress;
 		cpu.startingAddress = currentProcesses.startingAddress;
 		
@@ -67,7 +70,7 @@ public class OperatingSystem {
 		for (int i = 0; i < processes.length; i++){
 			cpu.memory[loadAddress + i] = processes[i];
 			loadAddress += processes.length;
-			Process process = new Process(startingAddress, processes.length, readyProcesses.size());
+			Process process = new Process(startingAddress, processes[i], processes.length, readyProcesses.size());
 			readyProcesses.add(process);
 		}
 	}

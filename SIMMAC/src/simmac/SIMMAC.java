@@ -38,12 +38,11 @@ public class SIMMAC {
 	 * @return boolean, false if unable to read
 	 */
 	public boolean readFromMemory(){
-		boolean readable = (storageAddressRegister + startingAddress < memorySize && 
+		boolean readable = (storageAddressRegister + startingAddress < endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
 		if (readable){
 			storageDataRegister = memory[startingAddress + storageAddressRegister];
 		}
-		
 		return (!readable);
 	}
 	
@@ -53,7 +52,7 @@ public class SIMMAC {
 	 * @return boolean, false if unable to write
 	 */
 	public boolean writeToMemory(){
-		boolean writable = (storageAddressRegister + startingAddress < memorySize && 
+		boolean writable = (storageAddressRegister + startingAddress < endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
 		if (writable){
 			memory[startingAddress + storageAddressRegister] = storageDataRegister;
@@ -115,15 +114,16 @@ public class SIMMAC {
 	 */
 	public boolean instructionFetch() {
 		storageAddressRegister = psiar;
-		if (readFromMemory()){
-			return true;
-		}
-		else{
+		System.out.println("GRANDTOTAL: " + (this.storageAddressRegister >> 16));
+		//if (readFromMemory()){
+			//return true;
+		//}
+		//else{
 			instructionRegister = storageDataRegister;
 			storageDataRegister = instructionRegister & 0xFFFF;
-			csiar = instructionRegister >> 16;
+			csiar = storageAddressRegister >> 16;
 			return false;
-		}
+		//}
 	}
 	
 	/**
@@ -238,11 +238,8 @@ public class SIMMAC {
 		boolean halt = false, error = false;
 		
 		instructionFetch();
+		System.out.println("CURRENT CSIAR: " + csiar);
 		switch(csiar){
-			case Instruction.base:
-				error = false;
-				halt = true;
-				break;
 			case Instruction.add:
 				error = add();
 				break;
