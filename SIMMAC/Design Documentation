@@ -1,0 +1,119 @@
+SIMMAC System Design Document						Programming by Mariah Avalos
+
+    1.1 Purpose
+
+    	The SIMMAC is a simulated machine that contains 512 32-bit words of memory, with each
+	instruction consisting of 16 bit op codes and operands. The purposes of the SIMMAC is to
+	mimic an OS in design and functionality. See section 2.0 for current system architecture,
+	including performance, error handling, and definitions.
+
+
+    Section/Topic 	Description
+    1. Introduction
+        1.1 Purpose of the System	
+     
+    2. Current Software Architecture	
+	2.1 Registers
+		2.1.1 ACC
+			Accumulator; A 32-bit register involved in all arithmetic
+			operations.
+		2.1.2 PSIAR
+			Primary Storage Instruction Address Register; This 16-bit
+			register points to the location in primary storage of the next
+			machine language instruction to be executed.
+		2.1.3 SAR
+			Storage Address Register; This 16-bit register is involved in all
+			references to primary storage.
+		2.1.4 SDR
+			Storage Data Register; This 32-bit register is also involved in
+			all references to primary storage.
+		2.1.5 TMPR
+			Temporary Register; This 32-bit register is used to extract the
+			address portion (rightmost 16-bits) of the machine instruction in
+			the SDR so that it may be placed in the SAR.
+		2.1.6 CSIAR
+			Control Storage Instruction Address Register; This register
+			points to the location of the next micro-instruction (in control
+			storage) to be executed.
+		2.1.7 IR
+			Instruction Register; This register contains the current
+			instruction being executed.
+		2.1.8 MIR
+			Micro-instruction Register; This register contains the current
+			micro-instruction being executed.
+		
+	2.2 Applicable OP Codes
+		2.2.1 ADD
+		2.2.2 SUB
+		2.2.3 LDA
+		2.2.4 STR
+		2.2.5 LDI
+		2.2.6 BRH
+		2.2.7 CBR
+
+	2.3 Primary Storage Operations
+		2.3.1 READ
+			Data from primary storage location named in the SAR is
+			placed in the SDR.
+		2.3.2 WRITE
+			Data in the SDR is placed in primary storage location
+			named in the SAR.
+
+	2.4 Language Descriptions
+		2.4.1 ADD
+			ADD <address>, where <address> holds the value to add to the accumulator.
+		2.4.2 SUB
+			SUB <address>, where <address> holds the value to subtract from the 				accumulator.
+		2.4.3 LDA
+			LDA <address>, where <address> holds the value to load in to the accumulator.
+		2.4.4 STR
+			STR <address>, where address is the storage location for the contents of the
+			accumulator.
+		2.4.5 LDI
+			LDI number, where number is the value to load in to the accumulator.
+		2.4.6 BRH
+			BRH <address>, where <address> is the target of the absolute branch.
+		2.4.7 CBR
+			CBR <address>, where <address> is the target of an absolute branch if the
+			accumulator is zero.
+			
+	2.5 Scheduling
+		2.5.1 PCB
+			Process control block data structure to allow for multiple process scheduling.
+		2.5.2 Round Robin
+			Round robin scheduling based on quantum value provided via user.
+		2.5.3 Quantum Value
+			Value used for clock cycling.
+		2.5.4 Process Queue
+			List of processes provided that are left to be completed
+		2.5.5 Current Process
+			Current process being executed.
+
+
+    3. Running the VM/OS
+	3.1 Command Line, No File Specified
+		-Run executable JAR file. 
+		-Remember to have txt files for processing in same directory as .jar file.
+		- Example: java -jar SIMMACexecutable.jar
+			
+	3.2 Command Line, File Specified
+		-Run executable JAR file with file name(s) appended to end of command.
+		-Remember to have txt files for processing in same directory as .jar file.
+		- Example: java -jar SIMMACexecutable.jar <filename>
+
+	3.3 Error Handling
+		3.3.1 System exits (Errors) 
+			Errors are thrown for the following:
+				- Bad numeric values/operands
+				- Bad instruction/op codes
+				- Syntax errors in file
+				- Bad command line values
+				- File not Found
+				- Out of Memory
+		3.3.2 System Exits (No Errors)
+			System exits, with no error, occur for the following:
+				- Finished processing instruction list.
+		
+    4. Glossary 	
+	Document was composed thanks to the OS Problem Set instruction guide by Dr. Simco. 
+

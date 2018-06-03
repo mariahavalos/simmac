@@ -65,7 +65,7 @@ public class Main {
 			ArrayList<String> fileNames = new ArrayList <String>();
 			
 			while(!done){
-				System.out.println("Please enter another file to continue");
+				System.out.println("Please enter a file to continue");
 				fileNames.add(scanner.next());
 				System.out.println("Do you want to load another file?");
 				String answer = scanner.next();

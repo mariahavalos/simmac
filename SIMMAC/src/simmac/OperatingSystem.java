@@ -84,6 +84,7 @@ public class OperatingSystem {
 	public void loadProcess(int []processes){
 		int startingAddress = loadAddress;
 		if (loadAddress + processes.length >= cpu.memorySize){
+			System.out.println("Invalid memory! Aborting.");
 			System.exit(0);
 		}
 		for (int i = 0; i < processes.length; i++){
