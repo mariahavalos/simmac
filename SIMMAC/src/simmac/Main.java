@@ -77,7 +77,6 @@ public class Main {
 				os.loadProgram(osProgram);
 			}
 		}
-		
 		os.run();
 	}
 }
