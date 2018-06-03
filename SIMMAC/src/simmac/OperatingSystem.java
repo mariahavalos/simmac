@@ -14,18 +14,18 @@ public class OperatingSystem {
 		clock = 0;
 		loadAddress = 0;
 		currentProcesses = null;
-		readyProcesses = new ArrayList();
+		readyProcesses = new ArrayList<Process>();
 	}
 	
 	public void run(){
-		currentProccesses = null;
+		currentProcesses = null;
 		boolean quit = false;
 		
 		switchProcesses();
 		while (!quit){
 			boolean status = cpu.executeInstruction();
 			clock += 1;
-			if (quit == true){
+			if (status == true){
 				if (readyProcesses.size() > 0){
 					currentProcesses = null;
 					switchProcesses();
@@ -42,13 +42,13 @@ public class OperatingSystem {
 	
 	public void switchProcesses(){
 		if (currentProcesses != null){
-			currentProcceses.accumulator = cpu.accumulator;
-			currentProcceses.psiar = cpu.psiar;
+			currentProcesses.accumulator = cpu.accumulator;
+			currentProcesses.psiar = cpu.psiar;
 			readyProcesses.add(currentProcesses);
 		}
 		
 		currentProcesses = readyProcesses.remove(0);
-		cpu.accumulator = currentProcess.accumulator;
+		cpu.accumulator = currentProcesses.accumulator;
 		cpu.psiar = currentProcesses.psiar;
 		cpu.endingAddress = currentProcesses.endingAddress;
 		cpu.startingAddress = currentProcesses.startingAddress;
@@ -59,7 +59,7 @@ public class OperatingSystem {
 		print(); 
 	}
 	
-	public void loadProccess(int []processes){
+	public void loadProcess(int []processes){
 		int startingAddress = loadAddress;
 		if (loadAddress + processes.length >= cpu.memorySize){
 			System.exit(0);
@@ -68,7 +68,7 @@ public class OperatingSystem {
 		for (int i = 0; i < processes.length; i++){
 			cpu.memory[loadAddress + i] = processes[i];
 			loadAddress += processes.length;
-			Proccess process = new Process(startingAddress, process.length, readyProcesses.size());
+			Process process = new Process(startingAddress, processes.length, readyProcesses.size());
 			readyProcesses.add(process);
 		}
 	}

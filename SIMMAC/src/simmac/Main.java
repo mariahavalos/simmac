@@ -50,10 +50,10 @@ public class Main {
 		int file = scanner.nextInt();
 		SIMMAC cpu = new SIMMAC();
 		
-		OperatingSystem os = new OperatingSystem(cpu, file);
+		OperatingSystem os = new OperatingSystem(file, cpu);
 		if (args.length == 0){
 			boolean done = false;
-			ArrayList<String> fileNames = new ArrayList();
+			ArrayList<String> fileNames = new ArrayList <String>();
 			
 			while(!done){
 				System.out.println("Please enter another file to continue");
@@ -68,15 +68,16 @@ public class Main {
 			}
 			for (int i = 0; i < fileNames.size(); i++){
 				int [] osProgram = readFile(fileNames.get(i));
-				os.loadProgram(osProgram);
+				os.loadProcess(osProgram);
 			}
 		}
 		else{
 			for (int i = 0; i < args.length; i++){
 				int [] osProgram = readFile(args[i]);
-				os.loadProgram(osProgram);
+				os.loadProcess(osProgram);
 			}
 		}
 		os.run();
+		scanner.close();
 	}
 }
