@@ -42,13 +42,12 @@ public class OperatingSystem {
 		if (currentProcesses != null){
 			currentProcesses.accumulator = cpu.accumulator;
 			currentProcesses.psiar = cpu.psiar;
-			//readyProcesses.add(currentProcesses); 
+			readyProcesses.add(currentProcesses); 
 		}
 		
 		currentProcesses = readyProcesses.remove(0);
 		cpu.accumulator = currentProcesses.accumulator;
 		cpu.psiar = currentProcesses.psiar;
-		System.out.println("Current PSIAR: " + cpu.psiar);
 		cpu.endingAddress = currentProcesses.endingAddress;
 		cpu.startingAddress = currentProcesses.startingAddress;
 		
@@ -67,7 +66,7 @@ public class OperatingSystem {
 			cpu.memory[loadAddress + i] = processes[i];
 			int psiar = loadAddress + i; 
 			loadAddress += processes.length;
-			Process process = new Process(startingAddress, psiar, processes.length, readyProcesses.size());
+			Process process = new Process(startingAddress, psiar, loadAddress, readyProcesses.size());
 			readyProcesses.add(process);
 		}
 	}

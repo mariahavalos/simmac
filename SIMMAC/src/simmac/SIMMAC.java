@@ -40,9 +40,9 @@ public class SIMMAC {
 	public boolean readFromMemory(){
 		boolean readable = ((storageAddressRegister + startingAddress) <= endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
-		System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
-		System.out.println("Memory is [" + memory[(storageAddressRegister + startingAddress)] + "]");
-		System.out.println("Memory limit is: " + endingAddress);
+		//System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
+		//System.out.println("Memory is [" + memory[(storageAddressRegister + startingAddress)] + "]");
+		//System.out.println("Memory limit is: " + endingAddress);
 		if (readable){
 			storageDataRegister = memory[(storageAddressRegister + startingAddress)];
 		}
@@ -240,7 +240,6 @@ public class SIMMAC {
 		boolean halt = false, error = false;
 		
 		instructionFetch();
-		System.out.println("Current CSIAR: " + csiar);
 		switch(csiar){
 		case Instruction.base:
 			error = false;
