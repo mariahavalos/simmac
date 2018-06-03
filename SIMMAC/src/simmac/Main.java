@@ -9,8 +9,9 @@ public class Main {
 
 	/**
 	 * Function parses file with Simmac instructions
+	 * @throws FileNotFoundException 
 	 */
-	public static int[] readFile(String fileName) {
+	public static int[] readFile(String fileName) throws FileNotFoundException {
 		try{
 			ArrayList<Integer> instructions = new ArrayList<Integer>();
 			Scanner scanner = new Scanner(new File(fileName)); 
@@ -44,13 +45,13 @@ public class Main {
 		return null;
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		System.out.println("Please provide your file name");
 		Scanner scanner = new Scanner(System.in);
-		int file = scanner.nextInt();
+		int value = scanner.nextInt();
 		SIMMAC cpu = new SIMMAC();
 		
-		OperatingSystem os = new OperatingSystem(file, cpu);
+		OperatingSystem os = new OperatingSystem(value, cpu);
 		if (args.length == 0){
 			boolean done = false;
 			ArrayList<String> fileNames = new ArrayList <String>();
@@ -61,8 +62,8 @@ public class Main {
 				System.out.println("Do you want to load another file?");
 				String answer = scanner.next();
 				
-				if ((answer.toLowerCase().equals('n') || answer.toLowerCase().equals("no")) 
-						&& (!(answer.toLowerCase().equals("yes")) && !(answer.toLowerCase().equals("yes")))){
+				if (((answer.toLowerCase().equals("n")) || (answer.toLowerCase().equals("no"))) 
+						&& (!(answer.toLowerCase().equals("y")) && !(answer.toLowerCase().equals("yes")))){
 					done = true;
 				}
 			}
