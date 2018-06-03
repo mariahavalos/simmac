@@ -116,12 +116,10 @@ public class SIMMAC {
 	 * @return boolean, whether or not instruction could be fetched
 	 */
 	public boolean instructionFetch() {
-		System.out.println("Fetching....");
 		storageAddressRegister = psiar;
 		if (readFromMemory()){
 			return true;
 		}
-		System.out.println("...FOUND! Processing...");
 		instructionRegister = storageDataRegister;
 		csiar = instructionRegister >> 16;
 		storageDataRegister = instructionRegister & 0xFFFF;
