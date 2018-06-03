@@ -23,7 +23,7 @@ public class SIMMAC {
 	/**
 	 * Function that sets default values to csiar, psiar, accumulator, and memory
 	 */
-	public void setMemory(){
+	public SIMMAC(){
 		memory = new int [memorySize];
 		startingAddress = 0;
 		endingAddress = memorySize;
