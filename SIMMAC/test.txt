@@ -1,2 +1,2 @@
-STR 23
-ADD 23
+STR 1
+ADD 1

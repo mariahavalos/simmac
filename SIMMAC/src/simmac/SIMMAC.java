@@ -38,11 +38,12 @@ public class SIMMAC {
 	 * @return boolean, false if unable to read
 	 */
 	public boolean readFromMemory(){
-		boolean readable = ((storageAddressRegister + startingAddress) < endingAddress && 
+		boolean readable = ((storageAddressRegister + startingAddress) <= endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
+		System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
+		System.out.println("Memory is [" + memory[(storageAddressRegister + startingAddress)] + "]");
+		System.out.println("Memory limit is: " + endingAddress);
 		if (readable){
-			System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
-			System.out.println("Memory is " + memory[(storageAddressRegister + startingAddress)] + "]");
 			storageDataRegister = memory[(storageAddressRegister + startingAddress)];
 		}
 		return (!readable);
@@ -54,12 +55,12 @@ public class SIMMAC {
 	 * @return boolean, false if unable to write
 	 */
 	public boolean writeToMemory(){
-		boolean writable = ((storageAddressRegister + startingAddress) < endingAddress && 
+		boolean writable = ((storageAddressRegister + startingAddress) <= endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
 		if (writable){
 			memory[storageAddressRegister + startingAddress] = storageDataRegister;
 		}
-		System.out.println("is writable? " + (storageAddressRegister + startingAddress));
+		
 		return (!writable);
 	}
 	
@@ -115,13 +116,15 @@ public class SIMMAC {
 	 * @return boolean, whether or not instruction could be fetched
 	 */
 	public boolean instructionFetch() {
+		System.out.println("Fetching....");
 		storageAddressRegister = psiar;
 		if (readFromMemory()){
 			return true;
 		}
+		System.out.println("...FOUND! Processing...");
 		instructionRegister = storageDataRegister;
-		storageDataRegister = instructionRegister & 0xFFFF;
 		csiar = instructionRegister >> 16;
+		storageDataRegister = instructionRegister & 0xFFFF;
 		return false;
 	}
 	
@@ -239,6 +242,10 @@ public class SIMMAC {
 		instructionFetch();
 		System.out.println("Current CSIAR: " + csiar);
 		switch(csiar){
+		case Instruction.base:
+			error = false;
+			halt = true;
+			break;
 			case Instruction.add:
 				error = add();
 				break;

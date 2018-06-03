@@ -32,7 +32,7 @@ public class OperatingSystem {
 			if (status == true && readyProcesses.size() == 0){
 				quit = true;
 			}
-			if (clock >= this.quantumValue && !quit && readyProcesses.size() > 0){
+			if (clock >= this.quantumValue && !quit){
 				switchProcesses();
 			}
 		}
@@ -42,11 +42,13 @@ public class OperatingSystem {
 		if (currentProcesses != null){
 			currentProcesses.accumulator = cpu.accumulator;
 			currentProcesses.psiar = cpu.psiar;
+			//readyProcesses.add(currentProcesses); 
 		}
 		
 		currentProcesses = readyProcesses.remove(0);
 		cpu.accumulator = currentProcesses.accumulator;
 		cpu.psiar = currentProcesses.psiar;
+		System.out.println("Current PSIAR: " + cpu.psiar);
 		cpu.endingAddress = currentProcesses.endingAddress;
 		cpu.startingAddress = currentProcesses.startingAddress;
 		
@@ -63,9 +65,9 @@ public class OperatingSystem {
 		}
 		for (int i = 0; i < processes.length; i++){
 			cpu.memory[loadAddress + i] = processes[i];
-			System.out.println("MEMORY at memory[" + (loadAddress + i) + "]");
+			int psiar = loadAddress + i; 
 			loadAddress += processes.length;
-			Process process = new Process(startingAddress, processes.length, readyProcesses.size());
+			Process process = new Process(startingAddress, psiar, processes.length, readyProcesses.size());
 			readyProcesses.add(process);
 		}
 	}
