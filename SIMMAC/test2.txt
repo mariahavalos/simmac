@@ -1,6 +1,0 @@
-STR 3
-ADD 3
-HALT
-STR 4
-ADD 4
-
