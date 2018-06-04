@@ -1,6 +1,6 @@
-# Output from running test 1 + test 2 + test 3 with SIMMAC
+# Output of test1, test3, and test2 run through simmac
 
-Quantum Value: 0
+Quantum Value: 1
 Switching processes.
 Next proccess: 0
 Proccess queue: 
@@ -16,6 +16,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 Switching processes.
 Next proccess: 1
 Proccess queue: 
@@ -30,6 +32,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 Switching processes.
 Next proccess: 2
@@ -44,6 +48,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 1
 Registers:
@@ -52,7 +58,7 @@ PSIAR: 000C
 SAR: 000C
 SDR: 00000000
 Memory: 
-800030002
+800000000
 1600000000
 2400010004
 3200000000
@@ -129,6 +135,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 1
 Switching processes.
@@ -142,6 +150,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 1
 3
@@ -155,6 +165,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 1
 3
@@ -168,6 +180,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 1
 3
@@ -181,6 +195,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 1
 3
@@ -193,7 +209,7 @@ PSIAR: 000C
 SAR: 000C
 SDR: 00000000
 Memory: 
-800030002
+800000000
 1600000000
 2400010004
 3200000000
@@ -265,6 +281,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 1
 3
@@ -277,6 +295,8 @@ Proccess queue:
 10
 11
 12
+13
+14
 0
 1
 3
@@ -289,6 +309,8 @@ Next proccess: 10
 Proccess queue: 
 11
 12
+13
+14
 0
 1
 3
@@ -297,13 +319,43 @@ Proccess queue:
 6
 8
 9
+Switching processes.
+Next proccess: 11
+Proccess queue: 
+12
+13
+14
+0
+1
+3
+4
+5
+6
+8
+9
+10
+Switching processes.
+Next proccess: 12
+Proccess queue: 
+13
+14
+0
+1
+3
+4
+5
+6
+8
+9
+10
+11
 Registers:
 ACC: 00000000
-PSIAR: 0001
-SAR: 0005
+PSIAR: 000C
+SAR: 000C
 SDR: 00000000
 Memory: 
-800030002
+800000000
 1600000000
 2400010004
 3200000000
@@ -366,10 +418,12 @@ Memory:
 48800000000
 49600000000
 50400000000
+
+End of Job
 Switching processes.
-Next proccess: 11
+Next proccess: 13
 Proccess queue: 
-12
+14
 0
 1
 3
@@ -378,18 +432,22 @@ Proccess queue:
 6
 8
 9
-Switching processes.
-Next proccess: 12
-Proccess queue: 
-0
-1
-3
-4
-5
-6
-8
-9
+10
 11
+Switching processes.
+Next proccess: 14
+Proccess queue: 
+0
+1
+3
+4
+5
+6
+8
+9
+10
+11
+13
 Switching processes.
 Next proccess: 0
 Proccess queue: 
@@ -400,8 +458,10 @@ Proccess queue:
 6
 8
 9
+10
 11
-12
+13
+14
 Switching processes.
 Next proccess: 1
 Proccess queue: 
@@ -411,8 +471,10 @@ Proccess queue:
 6
 8
 9
+10
 11
-12
+13
+14
 Switching processes.
 Next proccess: 3
 Proccess queue: 
@@ -421,9 +483,10 @@ Proccess queue:
 6
 8
 9
+10
 11
-12
-1
+13
+14
 Switching processes.
 Next proccess: 4
 Proccess queue: 
@@ -431,114 +494,59 @@ Proccess queue:
 6
 8
 9
+10
 11
-12
-1
-3
+13
+14
 Switching processes.
 Next proccess: 5
 Proccess queue: 
 6
 8
 9
+10
 11
-12
-1
-3
+13
+14
 Switching processes.
 Next proccess: 6
 Proccess queue: 
 8
 9
+10
 11
-12
-1
-3
-5
+13
+14
 Switching processes.
 Next proccess: 8
 Proccess queue: 
 9
+10
 11
-12
-1
-3
-5
+13
+14
 Switching processes.
 Next proccess: 9
 Proccess queue: 
+10
 11
-12
-1
-3
-5
-8
+13
+14
+Switching processes.
+Next proccess: 10
+Proccess queue: 
+11
+13
+14
 Switching processes.
 Next proccess: 11
 Proccess queue: 
-12
-1
-3
-5
-8
+13
+14
 Switching processes.
-Next proccess: 12
+Next proccess: 13
 Proccess queue: 
-1
-3
-5
-8
-11
+14
 Switching processes.
-Next proccess: 1
-Proccess queue: 
-3
-5
-8
-11
-Switching processes.
-Next proccess: 3
-Proccess queue: 
-5
-8
-11
-1
-Switching processes.
-Next proccess: 5
-Proccess queue: 
-8
-11
-1
-Switching processes.
-Next proccess: 8
-Proccess queue: 
-11
-1
-5
-Switching processes.
-Next proccess: 11
-Proccess queue: 
-1
-5
-8
-Switching processes.
-Next proccess: 1
-Proccess queue: 
-5
-8
-Switching processes.
-Next proccess: 5
-Proccess queue: 
-8
-1
-Switching processes.
-Next proccess: 8
-Proccess queue: 
-1
-Switching processes.
-Next proccess: 1
-Proccess queue: 
-8
-Switching processes.
-Next proccess: 8
+Next proccess: 14
 Proccess queue: 

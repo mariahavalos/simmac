@@ -1,3 +1,5 @@
 STR 5
 SUB 5
-LDA 2
+STR 6
+LDA 5
+ADD 7
