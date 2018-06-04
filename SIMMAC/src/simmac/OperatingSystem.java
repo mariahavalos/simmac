@@ -104,11 +104,13 @@ public class OperatingSystem {
 		}
 		for (int i = 0; i < processes.length; i++){
 			cpu.memory[loadAddress + i] = processes[i];
+			System.out.println("MEMORY AT: [" + (loadAddress + i) + " IS [" +  cpu.memory[loadAddress + i] + "]" + "\n");
 			int psiar = loadAddress + i; 
 			loadAddress += processes.length;
 			Process process = new Process(startingAddress, psiar, loadAddress, readyProcesses.size());
 			readyProcesses.add(process);
 		}
+		loadAddress = 0;
 	}
 	
 	/*

@@ -44,6 +44,8 @@ public class SIMMAC {
 	public boolean readFromMemory(){
 		boolean readable = ((storageAddressRegister + startingAddress) <= endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
+		System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
+		System.out.println("Memory is [" + memory[(storageAddressRegister + startingAddress)] + "]");
 		
 		/*//Uncomment the below to see the memory addresses and contents within those addresses. Helps for 
 		 * troubleshooting.
@@ -237,11 +239,11 @@ public class SIMMAC {
 	 */
 	public void dumpContents() throws IOException{
 		Writer outputFile = new BufferedWriter(new FileWriter("output.txt", true));
-		outputFile.append("Registers:");
-		outputFile.append(String.format("%08X", accumulator) + "\n");
-		outputFile.append(String.format("%04X", psiar) + "\n");
-		outputFile.append(String.format("%04X", storageAddressRegister) + "\n");
-		outputFile.append(String.format("%08X", storageDataRegister) + "\n");
+		outputFile.append("Registers:" + "\n" );
+		outputFile.append("ACC: " + String.format("%08X", accumulator) + "\n");
+		outputFile.append("PSIAR: " + String.format("%04X", psiar) + "\n");
+		outputFile.append("SAR: " +  String.format("%04X", storageAddressRegister) + "\n");
+		outputFile.append("SDR: " +  String.format("%08X", storageDataRegister) + "\n");
 		outputFile.append("Memory: " + "\n");
 		
 		/*// Uncomment to print to console
@@ -255,7 +257,7 @@ public class SIMMAC {
 		*/
 		for (int i = 0; i < memorySize; i++){
 			if (i > 0 && i%8 == 0){
-				outputFile.append(String.valueOf(i) + "\n");
+				outputFile.append(String.valueOf(i));
 				outputFile.append(String.format("%08X", memory[i]) + "\n");
 				//System.out.println(i);
 				//System.out.printf("%08X",memory[i]);
@@ -277,6 +279,7 @@ public class SIMMAC {
 		boolean halt = false, error = false;
 		
 		instructionFetch();
+		//System.out.println("CSIAR:" + csiar);
 		switch(csiar){
 		case Instruction.base:
 			error = false;

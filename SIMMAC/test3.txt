@@ -1,4 +1,3 @@
-STR 1
-ADD 1
-HALT
-
+STR 5
+SUB 5
+LDA 2
