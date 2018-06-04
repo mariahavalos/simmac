@@ -1,4 +1,4 @@
-STR 13
-ADD 16
+STR 1
+ADD 1
 HALT
 

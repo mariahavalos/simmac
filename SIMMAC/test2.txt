@@ -1,4 +1,6 @@
 STR 13
 ADD 16
 SUB 124
+LDA 2
+STR 4
 

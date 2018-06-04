@@ -1,5 +1,10 @@
 package simmac;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
 public class SIMMAC {
 	
 	// memory and addresses
@@ -228,21 +233,35 @@ public class SIMMAC {
 	/**
 	 * Function that prints out contents and memory addresses, used for dumping during error
 	 * or during halt.
+	 * @throws IOException 
 	 */
-	public void dumpContents(){
-		System.out.println("Registers:");
-		System.out.printf("ACC = %08X\tPSIAR = %04X\tSAR = %04X\tSDR = %08X\n",
-				accumulator,psiar,storageAddressRegister,storageDataRegister);
-		System.out.printf("TMPR = %08X\tCSIAR = %04X\tIR = %04X\tMIR = %04X\n",
-				temporaryRegister,csiar,instructionRegister, microInstructionRegister);
+	public void dumpContents() throws IOException{
+		Writer outputFile = new BufferedWriter(new FileWriter("output.txt", true));
+		outputFile.append("Registers:");
+		outputFile.append(String.format("%08X", accumulator) + "\n");
+		outputFile.append(String.format("%04X", psiar) + "\n");
+		outputFile.append(String.format("%04X", storageAddressRegister) + "\n");
+		outputFile.append(String.format("%08X", storageDataRegister) + "\n");
+		outputFile.append("Memory: " + "\n");
 		
-		System.out.println("Memory:");
+		/*// Uncomment to print to console
+		 * System.out.println("Registers:");
+		 * System.out.printf("ACC = %08X\tPSIAR = %04X\tSAR = %04X\tSDR = %08X\n",
+		 * 		accumulator,psiar,storageAddressRegister,storageDataRegister);
+		 * System.out.printf("TMPR = %08X\tCSIAR = %04X\tIR = %04X\tMIR = %04X\n",
+		 * 		temporaryRegister,csiar,instructionRegister, microInstructionRegister);
+		
+		 * System.out.println("Memory:");
+		*/
 		for (int i = 0; i < memorySize; i++){
 			if (i > 0 && i%8 == 0){
-				System.out.println(i);
-				System.out.printf("%08X",memory[i]);
+				outputFile.append(String.valueOf(i) + "\n");
+				outputFile.append(String.format("%08X", memory[i]) + "\n");
+				//System.out.println(i);
+				//System.out.printf("%08X",memory[i]);
 			}
 		}
+		outputFile.close();
 	}
 	
 	/**
@@ -252,8 +271,9 @@ public class SIMMAC {
 	 * Contains halt command. 
 	 * 
 	 * @return boolean, halt or error depending on outcome
+	 * @throws IOException 
 	 */
-	public boolean executeInstruction(){
+	public boolean executeInstruction() throws IOException{
 		boolean halt = false, error = false;
 		
 		instructionFetch();
@@ -285,7 +305,10 @@ public class SIMMAC {
 				break;
 			case Instruction.halt:
 				dumpContents();
-				System.out.println("\n" + "End of Job");
+				Writer outputFile = new BufferedWriter(new FileWriter("output.txt", true));
+				outputFile.append("\n" + "End of Job" + "\n");
+				//System.out.println("\n" + "End of Job");
+				outputFile.close();
 				halt = true;
 				break;
 			default:

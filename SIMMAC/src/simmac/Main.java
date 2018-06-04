@@ -1,6 +1,8 @@
 package simmac;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -51,12 +53,16 @@ public class Main {
 	 * and an array of file names. Runs best on command line.
 	 * 
 	 * @param args
-	 * @throws FileNotFoundException
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {	
 		System.out.println("Please enter a quantum value.");
 		Scanner scanner = new Scanner(System.in);
 		int value = scanner.nextInt();
+		PrintWriter writer = new PrintWriter("output.txt");
+		writer.print("Quantum Value: " + value + "\n");
+		writer.close();
+		
 		SIMMAC cpu = new SIMMAC();
 		
 		OperatingSystem os = new OperatingSystem(value, cpu);

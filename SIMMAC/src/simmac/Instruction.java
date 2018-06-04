@@ -78,6 +78,7 @@ public class Instruction {
 				else{
 					System.out.println("Error in " + fileName + " , line: " + line +
 							" is an invalid number: " + operand );
+					return null;
 				}
 			case add:
 			case subtract:
@@ -97,6 +98,7 @@ public class Instruction {
 				else{
 					System.out.println("Error in " + fileName + " , line: " + line +
 							" is an invalid number: " + operand );
+					return null;
 				}
 			case halt:
 			default:

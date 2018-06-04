@@ -1,4 +1,4 @@
-SIMMAC System Design Document
+SIMMAC System Design Document						Programming by Mariah Avalos
 
     1.1 Purpose
 
@@ -102,7 +102,7 @@ SIMMAC System Design Document
 		- Example: java -jar SIMMACexecutable.jar <filename>
 
 	3.3 Error Handling
-		3.3.1 System exits (Errors) 
+		3.3.1 System exits (Errors)
 			Errors are thrown for the following:
 				- Bad numeric values/operands
 				- Bad instruction/op codes
@@ -112,7 +112,16 @@ SIMMAC System Design Document
 				- Out of Memory
 		3.3.2 System Exits (No Errors)
 			System exits, with no error, occur for the following:
-				- Finished processing instruction list.
+			- Finished processing instruction list.
+	4. Output
+		4.1.1 Output (Happy Path)
+			-Output is printed to the output.txt file.
+			-Output is not printed to the console, but comments are available for such 					behavior.
+			-File is overwritted every time SIMMAC is run.
+		4.1.2 Output Error
+			-Errors are printed to the console.
+			-Console errors are not printed to the output.txt file.
+
 		
     4. Glossary 	
 	Document was composed thanks to the OS Problem Set instruction guide by Dr. Simco. 

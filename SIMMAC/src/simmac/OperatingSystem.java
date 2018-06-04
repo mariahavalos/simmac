@@ -1,4 +1,8 @@
 package simmac;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 
 public class OperatingSystem {
@@ -28,9 +32,10 @@ public class OperatingSystem {
 	 * Function that runs the os objects, containing the list of ready processes.
 	 * Cycles through until there are no more processes ready to be executed or an
 	 * error is thrown, as specified in other classes.
+	 * @throws IOException 
 	 * 
 	 */
-	public void run(){
+	public void run() throws IOException{
 		currentProcesses = null;
 		boolean quit = false;
 		
@@ -56,9 +61,11 @@ public class OperatingSystem {
 	 * based off the run() function, and if null, the cpu's variables are set to the current processes' 
 	 * variables. This helps to track the op code, operands, and other variables. A lot of the work is
 	 * done here.
+	 * @throws IOException 
 	 * 
 	 */
-	public void switchProcesses(){
+	public void switchProcesses() throws IOException{
+		Writer outputFile = new BufferedWriter(new FileWriter("output.txt", true));
 		if (currentProcesses != null){
 			currentProcesses.accumulator = cpu.accumulator;
 			currentProcesses.psiar = cpu.psiar;
@@ -72,8 +79,16 @@ public class OperatingSystem {
 		cpu.startingAddress = currentProcesses.startingAddress;
 		
 		clock = 0;
-		System.out.println("Switching processes.");
-		System.out.println("Next proccess: " + currentProcesses.id);
+		outputFile.append("Switching processes." +  "\n" );
+		outputFile.append("Next proccess: " + currentProcesses.id + "\n");
+		
+		/*//Uncomment the below to print to console instead of file.
+		 * System.out.println("Switching processes.");
+		 * System.out.println("Next proccess: " + currentProcesses.id);
+		 * 
+		 */
+		
+		outputFile.close();
 		print(); 
 	}
 	
@@ -99,11 +114,22 @@ public class OperatingSystem {
 	/*
 	 * Function that prints the process queue.
 	 */
-	public void print(){
-		System.out.println("Proccess queue: ");
+	public void print() throws IOException{
+		Writer outputFile = new BufferedWriter(new FileWriter("output.txt", true));
+		
+		/* //Uncomment below to print to console instead of file
+		 * System.out.println("Proccess queue: ");
+		 */
+		outputFile.append("Proccess queue: " + "\n");
 		for (int i = 0; i < readyProcesses.size(); i++){
-			System.out.println(readyProcesses.get(i).id + " ");
+			outputFile.append(readyProcesses.get(i).id + "\n");
+			
+			/*//Uncomment below to print to conosle instead of file.
+			 * System.out.println(readyProcesses.get(i).id + " ");
+			 * 
+			 */
 		}
+		outputFile.close();
 	}
 	
 }
