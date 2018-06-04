@@ -104,12 +104,17 @@ public class OperatingSystem {
 		}
 		for (int i = 0; i < processes.length; i++){
 			cpu.memory[loadAddress + i] = processes[i];
-			int psiar = loadAddress + i; 
+			int psiar = loadAddress + i;
+			
+			/*//Uncomment to see locations and values in memory
+			 * System.out.println("OP:" + cpu.memory[loadAddress + i] + "\n");
+			 * System.out.println("SA: " + startingAddress + "\n");
+			 * System.out.println("LOCATION: " + (loadAddress + i) + "\n");
+			*/
 			loadAddress += processes.length;
 			Process process = new Process(startingAddress, psiar, loadAddress, readyProcesses.size());
 			readyProcesses.add(process);
 		}
-		loadAddress = 0;
 	}
 	
 	/*

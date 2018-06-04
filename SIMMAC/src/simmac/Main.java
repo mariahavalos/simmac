@@ -38,6 +38,10 @@ public class Main {
 			int [] instruction = new int[instructions.size()];
 			for (int i = 0; i < instructions.size(); i++){
 				instruction[i] = instructions.get(i);
+				/* //Uncomment to show all op codes being brought in.
+				 * 
+				 * System.out.println("OPCode: " + instruction[i]);
+				*/
 			}
 			return instruction;
 		}
