@@ -296,12 +296,15 @@ public class SIMMAC {
 				break;
 			case Instruction.branch:
 				error = false;
+				halt = true;
 				break;
 			case Instruction.conditionalBranch:
 				error = false;
+				halt = true;
 				break;
 			case Instruction.loadImmediate:
 				error = false;
+				halt = true;
 				break;
 			case Instruction.halt:
 				dumpContents();
