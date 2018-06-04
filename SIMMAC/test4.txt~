@@ -1,0 +1,9 @@
+STR 5
+SUB 8
+STR 6
+LDA 5
+ADD 7
+STR 6
+LDI 1
+ADD 4
+

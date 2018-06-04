@@ -6,34 +6,318 @@ Proccess queue:
 2
 3
 4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
 Switching processes.
 Next proccess: 1
 Proccess queue: 
 2
 3
 4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
 0
 Switching processes.
 Next proccess: 2
 Proccess queue: 
 3
 4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
 0
 1
 Switching processes.
 Next proccess: 3
 Proccess queue: 
 4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
 0
 1
 2
 Switching processes.
 Next proccess: 4
 Proccess queue: 
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
 0
 1
 2
 3
+Switching processes.
+Next proccess: 5
+Proccess queue: 
+6
+7
+8
+9
+10
+11
+12
+13
+14
+0
+1
+2
+3
+4
+Switching processes.
+Next proccess: 6
+Proccess queue: 
+7
+8
+9
+10
+11
+12
+13
+14
+0
+1
+2
+3
+4
+5
+Switching processes.
+Next proccess: 7
+Proccess queue: 
+8
+9
+10
+11
+12
+13
+14
+0
+1
+2
+3
+4
+5
+6
+Registers:
+ACC: 00000000
+PSIAR: 0025
+SAR: 0025
+SDR: 00000000
+Memory: 
+800000000
+1600000000
+2400040002
+3200000000
+4000000000
+4800000000
+5600020005
+6400000000
+7200000000
+8000000000
+8800000000
+9600000000
+10400000000
+11200000000
+12000000000
+12800000000
+13600000000
+14400000000
+15200000000
+16000000000
+16800000000
+17600000000
+18400000000
+19200000000
+20000000000
+20800000000
+21600000000
+22400000000
+23200000000
+24000000000
+24800000000
+25600000000
+26400000000
+27200000000
+28000000000
+28800000000
+29600000000
+30400000000
+31200000000
+32000000000
+32800000000
+33600000000
+34400000000
+35200000000
+36000000000
+36800000000
+37600000000
+38400000000
+39200000000
+40000000000
+40800000000
+41600000000
+42400000000
+43200000000
+44000000000
+44800000000
+45600000000
+46400000000
+47200000000
+48000000000
+48800000000
+49600000000
+50400000000
+
+End of Job
+Switching processes.
+Next proccess: 8
+Proccess queue: 
+9
+10
+11
+12
+13
+14
+0
+1
+2
+3
+4
+5
+6
+Switching processes.
+Next proccess: 9
+Proccess queue: 
+10
+11
+12
+13
+14
+0
+1
+2
+3
+4
+5
+6
+8
+Switching processes.
+Next proccess: 10
+Proccess queue: 
+11
+12
+13
+14
+0
+1
+2
+3
+4
+5
+6
+8
+9
+Switching processes.
+Next proccess: 11
+Proccess queue: 
+12
+13
+14
+0
+1
+2
+3
+4
+5
+6
+8
+9
+10
+Switching processes.
+Next proccess: 12
+Proccess queue: 
+13
+14
+0
+1
+2
+3
+4
+5
+6
+8
+9
+10
+11
+Switching processes.
+Next proccess: 13
+Proccess queue: 
+14
+0
+1
+2
+3
+4
+5
+6
+8
+9
+10
+11
+12
+Switching processes.
+Next proccess: 14
+Proccess queue: 
+0
+1
+2
+3
+4
+5
+6
+8
+9
+10
+11
+12
+13
 Switching processes.
 Next proccess: 0
 Proccess queue: 
@@ -41,19 +325,152 @@ Proccess queue:
 2
 3
 4
+5
+6
+8
+9
+10
+11
+12
+13
+14
 Switching processes.
 Next proccess: 1
 Proccess queue: 
 2
 3
 4
+5
+6
+8
+9
+10
+11
+12
+13
+14
 Switching processes.
 Next proccess: 2
 Proccess queue: 
 3
 4
+5
+6
+8
+9
+10
+11
+12
+13
+14
 Switching processes.
 Next proccess: 3
+Proccess queue: 
+4
+5
+6
+8
+9
+10
+11
+12
+13
+14
+Switching processes.
+Next proccess: 4
+Proccess queue: 
+5
+6
+8
+9
+10
+11
+12
+13
+14
+Switching processes.
+Next proccess: 5
+Proccess queue: 
+6
+8
+9
+10
+11
+12
+13
+14
+4
+Switching processes.
+Next proccess: 6
+Proccess queue: 
+8
+9
+10
+11
+12
+13
+14
+4
+Switching processes.
+Next proccess: 8
+Proccess queue: 
+9
+10
+11
+12
+13
+14
+4
+Switching processes.
+Next proccess: 9
+Proccess queue: 
+10
+11
+12
+13
+14
+4
+Switching processes.
+Next proccess: 10
+Proccess queue: 
+11
+12
+13
+14
+4
+9
+Switching processes.
+Next proccess: 11
+Proccess queue: 
+12
+13
+14
+4
+9
+Switching processes.
+Next proccess: 12
+Proccess queue: 
+13
+14
+4
+9
+Switching processes.
+Next proccess: 13
+Proccess queue: 
+14
+4
+9
+Switching processes.
+Next proccess: 14
+Proccess queue: 
+4
+9
+Switching processes.
+Next proccess: 4
+Proccess queue: 
+9
+Switching processes.
+Next proccess: 9
 Proccess queue: 
 4
 Switching processes.
