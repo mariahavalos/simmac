@@ -1,0 +1,3 @@
+STR 5
+SUB 5
+LDA 2

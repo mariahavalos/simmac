@@ -44,8 +44,6 @@ public class SIMMAC {
 	public boolean readFromMemory(){
 		boolean readable = ((storageAddressRegister + startingAddress) <= endingAddress && 
 				storageAddressRegister + startingAddress >= 0);
-		System.out.println("Looking for memory at memory[" + (storageAddressRegister + startingAddress) + "]");
-		System.out.println("Memory is [" + memory[(storageAddressRegister + startingAddress)] + "]");
 		
 		/*//Uncomment the below to see the memory addresses and contents within those addresses. Helps for 
 		 * troubleshooting.

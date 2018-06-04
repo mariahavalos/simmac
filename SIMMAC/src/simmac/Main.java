@@ -58,41 +58,54 @@ public class Main {
 	public static void main(String[] args) throws IOException {	
 		System.out.println("Please enter a quantum value.");
 		Scanner scanner = new Scanner(System.in);
-		int value = scanner.nextInt();
-		PrintWriter writer = new PrintWriter("output.txt");
-		writer.print("Quantum Value: " + value + "\n");
-		writer.close();
-		
-		SIMMAC cpu = new SIMMAC();
-		
-		OperatingSystem os = new OperatingSystem(value, cpu);
-		if (args.length == 0){
-			boolean done = false;
-			ArrayList<String> fileNames = new ArrayList <String>();
+		if (scanner.hasNextInt()){
+			int value = scanner.nextInt();
+			PrintWriter writer = new PrintWriter("output.txt");
+			writer.print("Quantum Value: " + value + "\n");
+			writer.close();
 			
-			while(!done){
-				System.out.println("Please enter a file to continue");
-				fileNames.add(scanner.next());
-				System.out.println("Do you want to load another file?");
-				String answer = scanner.next();
+			SIMMAC cpu = new SIMMAC();
+			
+			OperatingSystem os = new OperatingSystem(value, cpu);
+			if (args.length == 0){
+				boolean done = false;
+				ArrayList<String> fileNames = new ArrayList <String>();
 				
-				if (((answer.toLowerCase().equals("n")) || (answer.toLowerCase().equals("no"))) 
-						&& (!(answer.toLowerCase().equals("y")) && !(answer.toLowerCase().equals("yes")))){
-					done = true;
+				while(!done){
+					System.out.println("Please enter a file to continue");
+					fileNames.add(scanner.next());
+					System.out.println("Do you want to load another file?");
+					System.out.println("Valid answers are yes, y, no, and n: ");
+					String answer = scanner.next();
+					
+					if (((answer.toLowerCase().equals("n")) || (answer.toLowerCase().equals("no"))) 
+							&& (!(answer.toLowerCase().equals("y")) && !(answer.toLowerCase().equals("yes")))){
+						done = true;
+					}
+					else if((answer.toLowerCase().equals("y")) || (answer.toLowerCase().equals("yes"))){
+						done = false;
+					}
+					else{
+						System.out.println("Sorry, that's not a valid input! Executing previous inputs!");
+						done = true;
+					}
+				}
+				for (int i = 0; i < fileNames.size(); i++){
+					int [] osProgram = readFile(fileNames.get(i));
+					os.loadProcess(osProgram);
 				}
 			}
-			for (int i = 0; i < fileNames.size(); i++){
-				int [] osProgram = readFile(fileNames.get(i));
-				os.loadProcess(osProgram);
+			else{
+				for (int i = 0; i < args.length; i++){
+					int [] osProgram = readFile(args[i]);
+					os.loadProcess(osProgram);
+				}
 			}
+			os.run();
+			scanner.close();
 		}
 		else{
-			for (int i = 0; i < args.length; i++){
-				int [] osProgram = readFile(args[i]);
-				os.loadProcess(osProgram);
-			}
+			System.out.println("That's not a number! Aborting simulation.");
 		}
-		os.run();
-		scanner.close();
 	}
 }

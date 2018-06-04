@@ -1,0 +1,63 @@
+# Output after running test1 using SIMMAC
+
+Quantum Value: 1
+Switching processes.
+Next proccess: 0
+Proccess queue: 
+1
+2
+3
+4
+Switching processes.
+Next proccess: 1
+Proccess queue: 
+2
+3
+4
+0
+Switching processes.
+Next proccess: 2
+Proccess queue: 
+3
+4
+0
+1
+Switching processes.
+Next proccess: 3
+Proccess queue: 
+4
+0
+1
+2
+Switching processes.
+Next proccess: 4
+Proccess queue: 
+0
+1
+2
+3
+Switching processes.
+Next proccess: 0
+Proccess queue: 
+1
+2
+3
+4
+Switching processes.
+Next proccess: 1
+Proccess queue: 
+2
+3
+4
+Switching processes.
+Next proccess: 2
+Proccess queue: 
+3
+4
+Switching processes.
+Next proccess: 3
+Proccess queue: 
+4
+Switching processes.
+Next proccess: 4
+Proccess queue: 
