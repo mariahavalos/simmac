@@ -54,7 +54,7 @@ public class Instruction {
 	 * @param operand
 	 * @return operandValue, if applicable
 	 */
-	public static Integer parseOperand(int opCode, int line, String fileName, String operand){
+	public static Integer parse(int opCode, int line, String fileName, String operand){
 		switch(opCode){
 			case base:
 				if (operand.matches("[+-]?\\d+")){
@@ -136,7 +136,7 @@ public class Instruction {
 			return (opCodeValue << 16); 
 		}
 		else{
-			Integer op = parseOperand(opCodeValue, lineNumber, fileName, lineArray[1]);
+			Integer op = parse(opCodeValue, lineNumber, fileName, lineArray[1]);
 			if (op == null){
 				return null;
 			}
