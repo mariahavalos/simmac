@@ -1,0 +1,4 @@
+LDI 4
+STR 7
+LDA 7
+ADD 7

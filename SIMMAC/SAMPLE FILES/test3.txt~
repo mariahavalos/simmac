@@ -1,0 +1,7 @@
+# Basic Testing, use for stress multi processing testing
+
+STR 5
+SUB 5
+STR 6
+LDA 5
+ADD 7

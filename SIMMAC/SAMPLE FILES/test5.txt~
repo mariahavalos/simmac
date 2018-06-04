@@ -1,0 +1,11 @@
+# Test using LDI, BRH
+
+LDI 4
+STR 7
+LDA 7
+ADD 7
+LDI 7
+LDA 4
+ADD 6
+BRH 2
+ADD 21

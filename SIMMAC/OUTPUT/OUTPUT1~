@@ -1,6 +1,5 @@
 # Designed as a stress test. Runs test.txt, test2.txt, and test3.txt, which contain
-# many process, all reaching and jumping around. Below is the output of running test.txt, 
-# test2.txt, and test3.txt respectively through SIMMAC 
+# many process, all reaching and jumping around. Below is the output: 
 
 
 Quantum Value: 0
