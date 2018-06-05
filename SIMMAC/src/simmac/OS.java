@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class OperatingSystem {
+public class OS {
 
-	ArrayList<Process> readyProcesses;
-	Process currentProcesses;
+	ProcessGenerator currentProcesses;
+	ArrayList<ProcessGenerator> readyProcesses;
 	SIMMAC cpu;
 	int quantumValue, loadAddress, clock;
 	
@@ -19,13 +19,13 @@ public class OperatingSystem {
 	 * @param quantumValue
 	 * @param cpu
 	 */
-	public OperatingSystem (int quantumValue, SIMMAC cpu){
+	public OS (int quantumValue, SIMMAC cpu){
 		this.cpu = cpu;
 		this.quantumValue = quantumValue;
 		clock = 0;
 		loadAddress = 0;
 		currentProcesses = null;
-		readyProcesses = new ArrayList<Process>();
+		readyProcesses = new ArrayList<ProcessGenerator>();
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class OperatingSystem {
 		cpu.startingAddress = currentProcesses.startingAddress;
 		
 		clock = 0;
-		outputFile.append("Switching processes." +  "\n" );
+		outputFile.append("Loading next process!" +  "\n" );
 		outputFile.append("Next proccess: " + currentProcesses.id + "\n");
 		
 		/*//Uncomment the below to print to console instead of file.
@@ -100,7 +100,7 @@ public class OperatingSystem {
 		int startingAddress = loadAddress;
 		if (loadAddress + processes.length >= cpu.memorySize){
 			System.out.println("Invalid memory! Aborting.");
-			System.exit(0);
+			System.exit(-1);
 		}
 		for (int i = 0; i < processes.length; i++){
 			cpu.memory[loadAddress + i] = processes[i];
@@ -112,7 +112,7 @@ public class OperatingSystem {
 			 * System.out.println("LOCATION: " + (loadAddress + i) + "\n");
 			*/
 			loadAddress += processes.length;
-			Process process = new Process(startingAddress, psiar, loadAddress, readyProcesses.size());
+			ProcessGenerator process = new ProcessGenerator(startingAddress, psiar, loadAddress, readyProcesses.size());
 			readyProcesses.add(process);
 		}
 	}

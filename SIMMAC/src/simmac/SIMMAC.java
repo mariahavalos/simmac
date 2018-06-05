@@ -278,35 +278,35 @@ public class SIMMAC {
 		
 		instructionFetch();
 		switch(csiar){
-		case Instruction.base:
-			error = false;
-			halt = true;
+			case Processor.base:
+				error = false;
+				halt = true;
 			break;
-			case Instruction.add:
+			case Processor.add:
 				error = add();
 				break;
-			case Instruction.subtract:
+			case Processor.subtract:
 				error = subtract();
 				break;
-			case Instruction.load:
+			case Processor.load:
 				error = load();
 				break;
-			case Instruction.store:
+			case Processor.store:
 				error = store();
 				break;
-			case Instruction.branch:
+			case Processor.branch:
 				error = false;
 				halt = true;
 				break;
-			case Instruction.conditionalBranch:
+			case Processor.conditionalBranch:
 				error = false;
 				halt = true;
 				break;
-			case Instruction.loadImmediate:
+			case Processor.loadImmediate:
 				error = false;
 				halt = true;
 				break;
-			case Instruction.halt:
+			case Processor.halt:
 				dumpContents();
 				Writer outputFile = new BufferedWriter(new FileWriter("output.txt", true));
 				outputFile.append("\n" + "End of Job" + "\n");
@@ -316,12 +316,12 @@ public class SIMMAC {
 				break;
 			default:
 				dumpContents();
-				System.out.printf("Invalid instruction. Terminating process.", instructionRegister);
+				System.out.println("Invalid instruction." + instructionRegister);
 				halt = true;
 		} 
 		if (error){
 			dumpContents();
-			System.out.printf("Invalid memory address. Terminating process.", storageAddressRegister);
+			System.out.println("Invalid memory address." + storageAddressRegister);
 		}
 		return (halt || error);
 	}

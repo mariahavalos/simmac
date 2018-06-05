@@ -113,17 +113,28 @@ SIMMAC System Design Document						Programming by Mariah Avalos
 		3.3.2 System Exits (No Errors)
 			System exits, with no error, occur for the following:
 			- Finished processing instruction list.
-	4. Output
-		4.1.1 Output (Happy Path)
-			-Output is printed to the output.txt file.
-			-Output is not printed to the console, but comments are available for such 					behavior.
-			-File is overwritted every time SIMMAC is run.
-		4.1.2 Output Error
-			-Errors are printed to the console.
-			-Console errors are not printed to the output.txt file.
+    4. Output
+	4.1 Output (Happy Path)
+		-Output is printed to the output.txt file.
+		-Output is not printed to the console, but comments are available for such 				behavior.
+		-File is overwritted every time SIMMAC is run.
+	4.1 Output Error
+		-Errors are printed to the console.
+		-Console errors are not printed to the output.txt file.
 
+    5. Programs
+	5.1 test.txt
+		-Basic program, happy path. Tests load immediate, add, and store for values. 
+	5.2 test2.txt
+		-Tests halt, meant to be run after and with test.txt. Also acts as a main source for 			stress testing, due to its bulky length.	
+	5.3 test3.txt
+		-Meant to add more stress for testing, tests subtract and load.
+	5.4 test4.txt
+		-Meant to add more stress for testing. 
+	5.5 test5.txt
+		-Tests conditional branching, branching, and multi-digit memory. Finalizes stress 			test.
 		
-    4. Glossary 	
+    6. Glossary 	
 	Document was composed thanks to the OS Problem Set instruction guide by Dr. Simco. 
 
 

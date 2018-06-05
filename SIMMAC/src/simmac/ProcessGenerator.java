@@ -1,6 +1,6 @@
 package simmac;
 
-public class Process {
+public class ProcessGenerator {
 
 	public int id;
 	public int accumulator;
@@ -17,7 +17,7 @@ public class Process {
 	 * @param size
 	 * @param id
 	 */
-	public Process(int startingAddress, int psiar, int size, int id){
+	public ProcessGenerator (int startingAddress, int psiar, int size, int id){
 		this.id = id;
 		this.startingAddress = startingAddress;
 		accumulator = 0;

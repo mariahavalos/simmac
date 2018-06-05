@@ -23,13 +23,14 @@ public class Main {
 			while (scanner.hasNext()){
 				String line = scanner.nextLine().trim();
 				if (line.length() > 0){
-					Integer instruction = Instruction.parseInstruction(lineNumber, fileName, line);
+					Integer instruction = Processor.parseInstruction(lineNumber, fileName, line);
 					if (instruction != null){
 						instructions.add(instruction);
 					}
 					else{
-						System.out.println("Syntax error in file: " + fileName);
-						System.exit(0);
+						System.out.println("Syntax error in " + fileName);
+						scanner.close();
+						return (null); 
 					}
 					lineNumber += 1;
 				}
@@ -46,8 +47,7 @@ public class Main {
 			return instruction;
 		}
 		catch (FileNotFoundException e){
-			System.out.println("File: " + fileName + " does not exist.");
-			System.exit(0); 
+			System.out.println(fileName + " does not exist.");
 		}
 		return null;
 	}
@@ -70,7 +70,7 @@ public class Main {
 			
 			SIMMAC cpu = new SIMMAC();
 			
-			OperatingSystem os = new OperatingSystem(value, cpu);
+			OS os = new OS(value, cpu);
 			if (args.length == 0){
 				boolean done = false;
 				ArrayList<String> fileNames = new ArrayList <String>();

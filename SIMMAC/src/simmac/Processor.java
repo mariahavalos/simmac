@@ -1,6 +1,6 @@
 package simmac;
 
-public class Instruction {
+public class Processor {
 
 	public final static int base = 0x0000;
 	public final static int add =  0x0001;
@@ -70,14 +70,12 @@ public class Instruction {
 						return value;
 					}
 					else{
-						System.out.println("Error in " + fileName + " , line: " + line +
-							"the number: " + operand + " is longer than 16 bits.");
+						System.out.println( operand + " is longer than 16 bits.");
 						return null;
 					}
 				}
 				else{
-					System.out.println("Error in " + fileName + " , line: " + line +
-							" is an invalid number: " + operand );
+					System.out.println(operand + " is an invalid number.");
 					return null;
 				}
 			case add:
@@ -90,14 +88,12 @@ public class Instruction {
 						return value;
 					}
 					else{
-						System.out.println("Error in " + fileName + " , line: " + line +
-							"the number: " + operand + " is longer than 16 bits.");
+						System.out.println(operand + " is longer than 16 bits.");
 						return null;
 					}
 				}
 				else{
-					System.out.println("Error in " + fileName + " , line: " + line +
-							" is an invalid number: " + operand );
+					System.out.println(operand + " is an invalid number.");
 					return null;
 				}
 			case halt:
@@ -117,24 +113,22 @@ public class Instruction {
 	public static Integer parseInstruction(int lineNumber, String fileName, String line){
 		String [] lineArray = line.split("\\s+");
 		if (lineArray.length > 2  || lineArray[0].length() == 0){
-			System.out.println("Error in " + fileName + " line: " + lineNumber + ", instructions must"
-				+ " contain one opcode and operand"); 
+			System.out.println("Invalid Syntax."); 
 			return null;
 		}
 		int opCodeValue = getOpCode(lineArray[0]);
 		if (opCodeValue == -1){
-			System.out.println("Error in " + fileName + " line: " + lineNumber + 
-					", invalid opcode " + lineArray[0]); 
+			System.out.println("Invalid OP Code."); 
 			return null;
 		}
 		if (opCodeValue == halt){
 			if (lineArray.length > 1){
-				System.out.println("Error in " + fileName + " line: " + lineNumber + 
-						", halt requires no operands"); 
+				System.out.println("Halt doesn't require operands."); 
 				return null;
 			}
 			return (opCodeValue << 16); 
 		}
+		
 		else{
 			Integer op = parse(opCodeValue, lineNumber, fileName, lineArray[1]);
 			if (op == null){
